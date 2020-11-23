@@ -1,3 +1,7 @@
 <resources>
-    <string name="app_name">InternProject</string>
+    <string name="app_name">Kiosk</string>
+    <string name="minus_button_description">Minus Button</string>
+    <string name="plus_button_description">Plus Button</string>
+    <string name="initial_count">0</string>
+    <string name="todo">TODO</string>
 </resources>

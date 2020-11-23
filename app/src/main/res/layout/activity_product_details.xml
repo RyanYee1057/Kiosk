@@ -12,7 +12,7 @@
         android:orientation="horizontal">
 
         <LinearLayout
-            android:layout_width="520dp"
+            android:layout_width="662dp"
             android:layout_height="match_parent"
             android:orientation="vertical">
 
@@ -117,36 +117,6 @@
                                 android:text="TextView" />
                         </LinearLayout>
 
-                        <LinearLayout
-                            android:id="@+id/haveShow2"
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:orientation="horizontal"
-                            android:paddingHorizontal="16dp">
-
-                            <Button
-                                android:id="@+id/addChart"
-                                android:layout_width="160dp"
-                                android:layout_height="wrap_content"
-                                android:background="#8BC34A"
-                                android:onClick="onAddCart"
-                                android:paddingHorizontal="16dp"
-                                android:text="Add to Cart"
-                                android:textStyle="bold" />
-
-                            <Button
-                                android:id="@+id/buynow"
-                                android:layout_width="160dp"
-                                android:layout_height="wrap_content"
-                                android:layout_marginLeft="25dp"
-                                android:background="#68ED6C"
-                                android:onClick="onBuyNow"
-                                android:paddingHorizontal="16dp"
-                                android:text="Buy Now"
-                                android:textStyle="bold" />
-
-                        </LinearLayout>
-
                         <TextView
                             android:id="@+id/Text_description"
                             android:layout_width="match_parent"
@@ -195,11 +165,89 @@
             android:layout_height="match_parent"
             android:orientation="vertical">
 
-            <Button
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/choose"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:background="#81F1FF"
+                    android:text="Quantity"
+                    android:textAlignment="center"
+                    android:textColor="#27952B"
+                    android:textSize="24sp"
+                    android:textStyle="bold" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="120dp"
+                android:orientation="horizontal">
+
+                <ImageButton
+                    android:id="@+id/button_minus"
+                    style="@style/MinusButtons"
+                    android:layout_width="@dimen/button_size"
+                    android:layout_height="@dimen/button_size"
+                    android:onClick="decreaseNum" />
+
+                <TextView
+                    android:id="@+id/num"
+                    style="@style/ScoreText"
+                    android:layout_width="150dp"
+                    android:layout_height="50dp"
+                    android:layout_centerHorizontal="true"
+                    android:layout_centerVertical="true"
+                    android:text="@string/initial_count"
+                    android:textAlignment="center"
+                    android:textSize="40sp" />
+
+                <ImageButton
+                    android:id="@+id/button_plus"
+                    style="@style/PlusButtons"
+                    android:layout_width="@dimen/button_size"
+                    android:layout_height="@dimen/button_size"
+                    android:contentDescription="@string/todo"
+                    android:onClick="increaseNum" />
+
+            </LinearLayout>
+
+            <LinearLayout
                 android:id="@+id/button"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Button" />
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:paddingHorizontal="16dp">
+
+                <Button
+                    android:id="@+id/addChart"
+                    android:layout_width="160dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="25dp"
+                    android:background="#8BC34A"
+                    android:onClick="onAddCart"
+                    android:paddingHorizontal="16dp"
+                    android:text="Add to Cart"
+                    android:textStyle="bold" />
+
+                <Button
+                    android:id="@+id/buynow"
+                    android:layout_width="160dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="25dp"
+                    android:layout_marginLeft="25dp"
+                    android:background="#68ED6C"
+                    android:onClick="onBuyNow"
+                    android:paddingHorizontal="16dp"
+                    android:text="Buy Now"
+                    android:textStyle="bold" />
+
+            </LinearLayout>
+
         </LinearLayout>
 
     </LinearLayout>
