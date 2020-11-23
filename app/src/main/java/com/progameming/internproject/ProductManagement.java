@@ -14,8 +14,6 @@ import org.json.JSONObject;
 
 public class ProductManagement {
 
-
-
     private static ProductManagement sInstance = null;
 
     public static ProductManagement getInstance(){
@@ -30,7 +28,6 @@ public class ProductManagement {
     private ProductManagement(){
         productList = null;
     }
-
 
     public void loadProduct(RequestQueue requestQueue){
         String url = "http://pos.api.itmansolution.com/product/getAllProduct";
@@ -75,4 +72,19 @@ public class ProductManagement {
         return jsonObject;
     }
 
+    public JSONObject getProductDetails(String product_id){
+        JSONObject jsonObject = null;
+        for(int i = 0; i < productList.length(); i++){
+            try {
+                JSONObject temp = productList.getJSONObject(i);
+                if(temp.getString("product_id").contains(product_id)){
+                    jsonObject = temp;
+                    break;
+                }
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+        }
+        return jsonObject;
+    }
 }

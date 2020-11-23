@@ -5,12 +5,14 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.ImageView;
 import android.widget.TextView;
+
+import com.bumptech.glide.Glide;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-
-import java.util.ArrayList;
 
 public class CategoryListAdapter extends BaseAdapter {
     Context context;
@@ -52,11 +54,14 @@ public class CategoryListAdapter extends BaseAdapter {
         try {
             JSONObject jsonObject = categoryList.getJSONObject(position);
 
-            TextView textView = view.findViewById(R.id.id_text);
+            TextView textView = view.findViewById(R.id.category_id);
             textView.setText(jsonObject.getString("category_id"));
 
-            textView = view.findViewById(R.id.name_text);
+            textView = view.findViewById(R.id.category_name);
             textView.setText(jsonObject.getString("category_name"));
+
+            ImageView pic = view.findViewById(R.id.category_pic);
+            Glide.with(context).load(jsonObject.getString("img_url")).override(200, 200).into(pic);
 
         } catch (JSONException e) {
             e.printStackTrace();
