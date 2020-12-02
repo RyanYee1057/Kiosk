@@ -63,6 +63,22 @@
                 android:onClick="onAll"
                 android:text="All product" />
 
+            <ImageView
+                android:id="@+id/shopCart"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_gravity="center"
+                android:onClick="onCart"
+                app:srcCompat="@drawable/ic_baseline_shopping_cart_24" />
+
+            <TextView
+                android:id="@+id/text_cart"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Shop Cart"
+                android:textAlignment="center"
+                android:textSize="18sp" />
+
             <ListView
                 android:id="@+id/category_list_view"
                 android:layout_width="wrap_content"

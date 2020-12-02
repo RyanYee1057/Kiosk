@@ -4,4 +4,9 @@
     <string name="plus_button_description">Plus Button</string>
     <string name="initial_count">0</string>
     <string name="todo">TODO</string>
+    <string name="quantity">Quantity :</string>
+    <string name="delete">Delete</string>
+    <string name="subtotal">Subtotal</string>
+    <string name="proceed_to_checkout">Proceed to checkout</string>
+    <string name="no_item_in_your_cart">No Item In your cart</string>
 </resources>

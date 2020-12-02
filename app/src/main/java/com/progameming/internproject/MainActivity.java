@@ -198,6 +198,11 @@ public class MainActivity extends AppCompatActivity implements TextWatcher {
         getAllProduct();
     }
 
+    public void onCart (View view){
+        Intent intent = new Intent(MainActivity.this, Cart.class);
+        startActivity(intent);
+    }
+
     @Override
     public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) { }
 

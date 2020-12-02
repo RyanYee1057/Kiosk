@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -17,11 +18,15 @@ public class ProductDetailsActivity extends AppCompatActivity {
     int product_id;
     String p_idALL;
     String p_idFi;
+    int selectedNum;
+    private TextView selectedNo;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_product_details);
+
+        selectedNo= findViewById(R.id.num);
 
         Intent intent = getIntent();
         product_id = intent.getIntExtra("product_id",0);
@@ -58,5 +63,40 @@ public class ProductDetailsActivity extends AppCompatActivity {
         } catch (JSONException e) {
             e.printStackTrace();
         }
+    }
+
+    public void decreaseNum(View view){
+        selectedNum = Integer.parseInt(selectedNo.getText().toString());
+        selectedNum--;
+        if (selectedNum <0)
+            selectedNum = 0;
+        selectedNo.setText(String.valueOf(selectedNum));
+    }
+
+    public void increaseNum(View view){
+        selectedNum = Integer.parseInt(selectedNo.getText().toString());
+        selectedNum++;
+        selectedNo.setText(String.valueOf(selectedNum));
+    }
+
+    public void onAddCart(View view){
+        Intent intent = new Intent(ProductDetailsActivity.this, Cart.class);
+        intent.putExtra("product_qty", selectedNum);
+
+        if(p_idALL != null){
+            intent.putExtra("p_idALL", p_idALL);
+        }
+        else if(p_idFi != null){
+            intent.putExtra("p_idFi", p_idFi);
+        } else{
+            intent.putExtra("p_id", product_id);
+        }
+
+        startActivity(intent);
+    }
+
+    public void onCart(View view){
+        Intent intent = new Intent(ProductDetailsActivity.this, Cart.class);
+        startActivity(intent);
     }
 }
