@@ -5,13 +5,19 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 
 import org.json.JSONException;
 import org.json.JSONObject;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class ProductDetailsActivity extends AppCompatActivity {
 
@@ -26,15 +32,16 @@ public class ProductDetailsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_product_details);
 
-        selectedNo= findViewById(R.id.num);
+        final ArrayList<cartModel> c = ProductManagement.getCart();
+        final cartModel cart = new cartModel();
+        selectedNo = findViewById(R.id.num);
 
         Intent intent = getIntent();
         product_id = intent.getIntExtra("product_id",0);
         p_idALL = intent.getStringExtra("x");
         p_idFi = intent.getStringExtra("filter");
-        System.out.println(product_id);
 
-        JSONObject productDetails;
+        final JSONObject productDetails;
         if(p_idALL != null){
             productDetails = ProductManagement.getInstance().getProductDetails(p_idALL);
         }
@@ -60,16 +67,47 @@ public class ProductDetailsActivity extends AppCompatActivity {
             desProduct.setText(productDetails.getString("description"));
             detail.setText(productDetails.getString("ingredients"));
             stock.setText(productDetails.getString("stock_qty"));
+
+            cart.setP_id(productDetails.getString("product_id"));
+            cart.setP_name(productDetails.getString("product_name"));
+            cart.setPrice(productDetails.getString("selling_price"));
+            cart.setP_pic(productDetails.getString("img_url"));
+
         } catch (JSONException e) {
             e.printStackTrace();
         }
+
+        Button addCartButton = (Button) findViewById(R.id.addCart);
+        addCartButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                cart.setQuantity(String.valueOf(selectedNum));
+
+                c.add(cart);
+
+                if(selectedNum > 1){
+                    Toast.makeText(ProductDetailsActivity.this, "Total " + selectedNum + " items", Toast.LENGTH_LONG).show();
+                }
+                else{
+                    Toast.makeText(ProductDetailsActivity.this, "Total 1 item", Toast.LENGTH_LONG).show();
+
+                }
+                Toast.makeText(ProductDetailsActivity.this, "Add cart successful!", Toast.LENGTH_LONG).show();
+                finish();
+            }
+        });
+
+        /*if(c.contains(cart)) {
+            addCartButton.setEnabled(false);
+            addCartButton.setText("Item in Cart");
+        }*/
     }
 
     public void decreaseNum(View view){
         selectedNum = Integer.parseInt(selectedNo.getText().toString());
         selectedNum--;
-        if (selectedNum <0)
-            selectedNum = 0;
+        if (selectedNum <1)
+            selectedNum = 1;
         selectedNo.setText(String.valueOf(selectedNum));
     }
 
@@ -79,24 +117,9 @@ public class ProductDetailsActivity extends AppCompatActivity {
         selectedNo.setText(String.valueOf(selectedNum));
     }
 
-    public void onAddCart(View view){
-        Intent intent = new Intent(ProductDetailsActivity.this, Cart.class);
-        intent.putExtra("product_qty", selectedNum);
-
-        if(p_idALL != null){
-            intent.putExtra("p_idALL", p_idALL);
-        }
-        else if(p_idFi != null){
-            intent.putExtra("p_idFi", p_idFi);
-        } else{
-            intent.putExtra("p_id", product_id);
-        }
-
+    public void onBack(View view){
+        Intent intent = new Intent(ProductDetailsActivity.this, MainActivity.class);
         startActivity(intent);
     }
 
-    public void onCart(View view){
-        Intent intent = new Intent(ProductDetailsActivity.this, Cart.class);
-        startActivity(intent);
-    }
 }

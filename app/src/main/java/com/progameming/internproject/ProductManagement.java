@@ -12,15 +12,32 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Vector;
+
 public class ProductManagement {
 
     private static ProductManagement sInstance = null;
+
+    public static final String PRODUCT_INDEX = "PRODUCT_INDEX";
+    public static final String PRODUCT_QTY = "PRODUCT_QTY";
+
+    private static ArrayList<cartModel> cart;
 
     public static ProductManagement getInstance(){
         if(sInstance == null){
             sInstance = new ProductManagement();
         }
         return sInstance;
+    }
+
+    public static ArrayList<cartModel> getCart() {
+        if(cart == null) {
+            cart = new ArrayList<cartModel>();
+        }
+
+        return cart;
     }
 
     private JSONArray productList;

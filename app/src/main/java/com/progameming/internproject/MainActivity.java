@@ -25,6 +25,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.Objects;
 
 public class MainActivity extends AppCompatActivity implements TextWatcher {
 
@@ -199,7 +200,7 @@ public class MainActivity extends AppCompatActivity implements TextWatcher {
     }
 
     public void onCart (View view){
-        Intent intent = new Intent(MainActivity.this, Cart.class);
+        Intent intent = new Intent(getBaseContext(), Cart.class);
         startActivity(intent);
     }
 
