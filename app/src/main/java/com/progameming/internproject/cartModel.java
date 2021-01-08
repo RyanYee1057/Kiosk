@@ -61,24 +61,4 @@ public class cartModel extends ArrayList<cartModel> {
 
     public void setQuantity(String quantity){this.quantity = quantity;}
 
-    /*
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        if (!super.equals(o)) return false;
-        cartModel cartModel = (com.progameming.internproject.cartModel) o;
-        return getQuantity().equals(cartModel.getQuantity()) &&
-                Objects.equals(product_id, cartModel.product_id) &&
-                Objects.equals(selling_price, cartModel.selling_price) &&
-                Objects.equals(product_name, cartModel.product_name) &&
-                Objects.equals(product_pic, cartModel.product_pic);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(super.hashCode(), product_id, selling_price, product_name, product_pic, getQuantity());
-    }
-
-     */
 }
