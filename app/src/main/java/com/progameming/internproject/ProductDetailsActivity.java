@@ -24,7 +24,7 @@ public class ProductDetailsActivity extends AppCompatActivity {
     int product_id;
     String p_idALL;
     String p_idFi;
-    int selectedNum;
+    int selectedNum = 1;
     private TextView selectedNo;
 
     @Override

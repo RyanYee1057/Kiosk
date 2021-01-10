@@ -9,15 +9,8 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ListView;
-import android.widget.ScrollView;
 import android.widget.TextView;
-
-import com.android.volley.RequestQueue;
-import com.android.volley.toolbox.Volley;
-
 import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
 
 import java.util.ArrayList;
 
@@ -33,7 +26,6 @@ public class Cart extends AppCompatActivity {
     String shoppingID;
     double totalPrice;
     int numStock, totalItem;
-    Button button;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,10 +49,7 @@ public class Cart extends AppCompatActivity {
                                     long id) {
 
                 cartModel selectedProduct = c.get(position);
-                if (selectedProduct.selected)
-                    selectedProduct.selected = false;
-                else
-                    selectedProduct.selected = true;
+                selectedProduct.selected = !selectedProduct.selected;
                 //selectedProduct.selected = !selectedProduct.selected;
 
                 cAdapter.notifyDataSetInvalidated();

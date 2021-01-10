@@ -18,14 +18,7 @@ public class CartListAdapter extends BaseAdapter {
     private ArrayList<cartModel> c;
     private LayoutInflater mInflater;
     private boolean mShowCheckbox;
-    //JSONArray cartList;
 
-    public CartListAdapter(Context context, ArrayList<cartModel> product) {
-        this.context = context;
-        this.c = product;
-    }
-
-    // LayoutInflater inflater,
     public CartListAdapter(Context context, ArrayList<cartModel> list, boolean showCheckbox) {
         this.context = context;
         this.c = list;
@@ -33,9 +26,9 @@ public class CartListAdapter extends BaseAdapter {
         mShowCheckbox = showCheckbox;
     }
 
-    public CartListAdapter(ArrayList<cartModel> list, LayoutInflater inflater, boolean showCheckbox) {
+    public CartListAdapter(ArrayList<cartModel> list, LayoutInflater Inflater, boolean showCheckbox) {
         this.c = list;
-        mInflater = inflater;
+        mInflater = Inflater;
         mShowCheckbox = showCheckbox;
     }
 
