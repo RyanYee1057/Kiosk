@@ -82,7 +82,7 @@ public class ProductListAdapter extends BaseAdapter implements Filterable {
                 ImageView product_pic = view.findViewById(R.id.p_pic);
 
                 product_id.setText(pList.get(position).getP_id());
-                selling_price.setText(pList.get(position).getPrice());
+                selling_price.setText("RM " + pList.get(position).getPrice());
                 product_name.setText(pList.get(position).getP_name());
                 category_name.setText(pList.get(position).getC_name());
 
@@ -98,7 +98,7 @@ public class ProductListAdapter extends BaseAdapter implements Filterable {
                 textView.setText(jsonObject.getString("product_name"));
 
                 textView = view.findViewById(R.id.price);
-                textView.setText(jsonObject.getString("selling_price"));
+                textView.setText("RM " + jsonObject.getString("selling_price"));
 
                 textView = view.findViewById(R.id.c_name);
                 textView.setText(jsonObject.getString("category_name"));

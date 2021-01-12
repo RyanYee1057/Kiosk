@@ -16,7 +16,7 @@ import java.util.ArrayList;
 
 public class Cart extends AppCompatActivity {
 
-    TextView item, tolPrice, noItem;
+    TextView price;
     ConstraintLayout bil;
     JSONArray cartArray;
     private ArrayList<cartModel> c ;
@@ -73,10 +73,7 @@ public class Cart extends AppCompatActivity {
             }
         });
 
-        bil = findViewById(R.id.bill);
-        noItem = (TextView) findViewById(R.id.no);
-        item = (TextView) findViewById(R.id.numSubtotal);
-        tolPrice = (TextView) findViewById(R.id.SubTotalPrice);
+        price = (TextView) findViewById(R.id.showPrice);
     }
 
     public void onBack(View view){
