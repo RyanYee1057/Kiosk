@@ -19,10 +19,6 @@ import java.util.Vector;
 public class ProductManagement {
 
     private static ProductManagement sInstance = null;
-
-    public static final String PRODUCT_INDEX = "PRODUCT_INDEX";
-    public static final String PRODUCT_QTY = "PRODUCT_QTY";
-
     private static ArrayList<cartModel> cart;
 
     public static ProductManagement getInstance(){

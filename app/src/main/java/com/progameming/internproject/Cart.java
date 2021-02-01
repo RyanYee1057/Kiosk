@@ -68,13 +68,32 @@ public class Cart extends AppCompatActivity {
                     if (c.get(i).selected) {
                         c.remove(i);
                     }
+                    double p = 0.00;
+                    for (int a = 0; a < c.size(); a++) {
+                        p += (Double.parseDouble(c.get(a).getPrice()) * Double.parseDouble(c.get(a).getQuantity()));
+
+                    }
+                    price.setText("RM" + String.format("%.2f", p));
                 }
                 cAdapter.notifyDataSetChanged();
             }
         });
 
         price = (TextView) findViewById(R.id.showPrice);
+        double p = 0.00;
+        if(!c.isEmpty()) {
+            for (int i = 0; i < c.size(); i++) {
+                p += (Double.parseDouble(c.get(i).getPrice()) * Double.parseDouble(c.get(i).getQuantity()));
+
+            }
+            price.setText("RM" + String.format("%.2f", p));
+        }else{
+            String pp = "RM 0";
+            price.setText(pp);
+        }
     }
+
+    //problem 1.Can't auto renew total price. 2.Can't add the price with direct quantity.
 
     public void onBack(View view){
         Intent intent = new Intent(Cart.this, MainActivity.class);
