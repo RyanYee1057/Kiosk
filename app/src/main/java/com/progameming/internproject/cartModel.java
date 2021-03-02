@@ -8,7 +8,7 @@ import java.util.Objects;
 
 public class cartModel extends ArrayList<cartModel> {
     String product_id, selling_price, product_name, product_pic;
-    String quantity;
+    String quantity, stock_qty;
     boolean selected;
 
     public cartModel(String p_id, String p_name, String price, String p_pic, String q){
@@ -63,5 +63,9 @@ public class cartModel extends ArrayList<cartModel> {
     public String getQuantity() { return quantity;}
 
     public void setQuantity(String quantity){this.quantity = quantity;}
+
+    public String getStock() { return stock_qty;}
+
+    public void setStock(String stock_qty){this.stock_qty = stock_qty;}
 
 }

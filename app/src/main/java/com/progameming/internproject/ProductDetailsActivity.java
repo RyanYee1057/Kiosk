@@ -55,7 +55,7 @@ public class ProductDetailsActivity extends AppCompatActivity {
         TextView name = findViewById(R.id.productName);
         TextView price = findViewById(R.id.productPrice);
         ImageView image = findViewById(R.id.productPic);
-        TextView stock = findViewById(R.id.quanlityStock);
+        final TextView stock = findViewById(R.id.quanlityStock);
         TextView desProduct = findViewById(R.id.id_description);
         TextView detail = findViewById(R.id.id_detail);
 
@@ -72,28 +72,40 @@ public class ProductDetailsActivity extends AppCompatActivity {
             cart.setP_name(productDetails.getString("product_name"));
             cart.setPrice(productDetails.getString("selling_price"));
             cart.setP_pic(productDetails.getString("img_url"));
+            cart.setStock(productDetails.getString("stock_qty"));
 
         } catch (JSONException e) {
             e.printStackTrace();
         }
 
+        final int stockQ = Integer.parseInt(cart.getStock());
         Button addCartButton = (Button) findViewById(R.id.addCart);
+
+        if(stockQ == 0) {
+            addCartButton.setEnabled(false);
+        }
+
         addCartButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 cart.setQuantity(String.valueOf(selectedNum));
 
-                c.add(cart);
+                if(selectedNum > stockQ){
+                    Toast.makeText(ProductDetailsActivity.this, "Item only remain " + stockQ , Toast.LENGTH_LONG).show();
 
-                if(selectedNum > 1){
-                    Toast.makeText(ProductDetailsActivity.this, "Total " + selectedNum + " items", Toast.LENGTH_LONG).show();
-                }
-                else{
-                    Toast.makeText(ProductDetailsActivity.this, "Total 1 item", Toast.LENGTH_LONG).show();
+                }else {
+                    c.add(cart);
 
+                    if(selectedNum > 1){
+                        Toast.makeText(ProductDetailsActivity.this, "Total " + selectedNum + " items", Toast.LENGTH_LONG).show();
+                    }
+                    else{
+                        Toast.makeText(ProductDetailsActivity.this, "Total 1 item", Toast.LENGTH_LONG).show();
+
+                    }
+                    Toast.makeText(ProductDetailsActivity.this, "Add cart successful!", Toast.LENGTH_LONG).show();
+                    finish();
                 }
-                Toast.makeText(ProductDetailsActivity.this, "Add cart successful!", Toast.LENGTH_LONG).show();
-                finish();
             }
         });
 

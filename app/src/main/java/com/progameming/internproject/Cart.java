@@ -8,7 +8,9 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ListView;
+import android.widget.Spinner;
 import android.widget.TextView;
 import org.json.JSONArray;
 
@@ -17,15 +19,19 @@ import java.util.ArrayList;
 public class Cart extends AppCompatActivity {
 
     TextView price;
+    private TextView numQ;
     ConstraintLayout bil;
     JSONArray cartArray;
     private ArrayList<cartModel> c ;
     //ArrayList<cartModel> c = new ArrayList<>();
     private CartListAdapter cAdapter;
 
+    Spinner spinner;
     String shoppingID;
     double totalPrice;
-    int numStock, totalItem;
+    String numStock;
+    int totalItem;
+    int selectedNum = 1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,6 +57,8 @@ public class Cart extends AppCompatActivity {
                 cartModel selectedProduct = c.get(position);
                 selectedProduct.selected = !selectedProduct.selected;
                 //selectedProduct.selected = !selectedProduct.selected;
+
+                numStock = selectedProduct.getStock();
 
                 cAdapter.notifyDataSetInvalidated();
 
@@ -91,9 +99,42 @@ public class Cart extends AppCompatActivity {
             String pp = "RM 0";
             price.setText(pp);
         }
+
+        // fix stock quantity
+        numQ = findViewById(R.id.num);
+
+        //spinner = (Spinner) findViewById(R.id.stockSpinner);
+        //spinner;
+        //numStock;
+
     }
 
-    //problem 1.Can't auto renew total price. 2.Can't add the price with direct quantity.
+    /*public void decreaseNum(View view){
+        for (int i = 0; i < c.size(); i++) {
+            selectedNum = Integer.parseInt(c.get(i).getQuantity());
+            selectedNum--;
+            if (selectedNum < 1)
+                selectedNum = 1;
+            //c.get(i).setQuantity(String.valueOf(selectedNum));
+            numQ.setText(String.valueOf(selectedNum));
+            //selectedNo.setText(String.valueOf(selectedNum));
+        }
+    }
+
+    public void increaseNum(View view){
+        for (int i = 0; i < c.size(); i++) {
+            selectedNum = Integer.parseInt(c.get(i).getQuantity());   //
+            selectedNum++;
+            System.out.println(selectedNum);
+            numQ.setText(String.valueOf(selectedNum));
+            //c.get(i).setQuantity(String.valueOf(selectedNum));
+            //selectedNo.setText(String.valueOf(selectedNum));
+        }
+    }
+
+     */
+
+    //quantity need to change manually, able change and provide a receipt
 
     public void onBack(View view){
         Intent intent = new Intent(Cart.this, MainActivity.class);
