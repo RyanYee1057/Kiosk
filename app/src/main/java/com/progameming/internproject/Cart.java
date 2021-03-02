@@ -12,6 +12,8 @@ import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
+
 import org.json.JSONArray;
 
 import java.util.ArrayList;
@@ -19,7 +21,7 @@ import java.util.ArrayList;
 public class Cart extends AppCompatActivity {
 
     TextView price;
-    private TextView numQ;
+
     JSONArray cartArray;
     private ArrayList<cartModel> c ;
     //ArrayList<cartModel> c = new ArrayList<>();
@@ -29,11 +31,15 @@ public class Cart extends AppCompatActivity {
     double totalPrice;
     String numStock;
     int selectedNum = 1;
+    private TextView selectedNo;
+    TextView num;
+    private static Cart instance;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cart);
+        instance = this;
 
         c = ProductManagement.getCart();
 
@@ -68,15 +74,16 @@ public class Cart extends AppCompatActivity {
             public void onClick(View v) {
                 // Loop through and remove all the products that are selected
                 // Loop backwards so that the remove works correctly
+                //Toast.makeText(Cart.this, String.valueOf(c.size()) , Toast.LENGTH_SHORT).show();
                 for (int i = c.size() - 1; i >= 0; i--) {
 
-                    if (c.get(i).selected) {
+                    if (c.get(i).isSelected()) {
                         c.remove(i);
+                        //Toast.makeText(Cart.this, "delete" + i , Toast.LENGTH_SHORT).show();
                     }
                     double p = 0.00;
                     for (int a = 0; a < c.size(); a++) {
                         p += (Double.parseDouble(c.get(a).getPrice()) * Double.parseDouble(c.get(a).getQuantity()));
-
                     }
                     price.setText("RM" + String.format("%.2f", p));
                 }
@@ -97,40 +104,39 @@ public class Cart extends AppCompatActivity {
             price.setText(pp);
         }
 
-        numQ = findViewById(R.id.num);
-
-        //spinner = (Spinner) findViewById(R.id.stockSpinner);
-        //spinner;
-        //numStock;
-
+        num = findViewById(R.id.num);
     }
 
-    /*public void decreaseNum(View view){
-        for (int i = 0; i < c.size(); i++) {
-            selectedNum = Integer.parseInt(c.get(i).getQuantity());
-            selectedNum--;
-            if (selectedNum < 1)
-                selectedNum = 1;
-            //c.get(i).setQuantity(String.valueOf(selectedNum));
-            numQ.setText(String.valueOf(selectedNum));
-            //selectedNo.setText(String.valueOf(selectedNum));
-        }
+    public static Cart getInstance() {
+        return instance;
     }
 
-    public void increaseNum(View view){
-        for (int i = 0; i < c.size(); i++) {
-            selectedNum = Integer.parseInt(c.get(i).getQuantity());   //
-            selectedNum++;
-            System.out.println(selectedNum);
-            numQ.setText(String.valueOf(selectedNum));
-            //c.get(i).setQuantity(String.valueOf(selectedNum));
-            //selectedNo.setText(String.valueOf(selectedNum));
-        }
+
+    public void calculation(double totalPrice){
+        TextView price = (TextView) findViewById(R.id.showPrice);
+        Toast.makeText(this, "haha", Toast.LENGTH_SHORT).show();
+        price.setText(String.format("RM%.2f", totalPrice));
+        //Toast.makeText(this, "calculate: " + p, Toast.LENGTH_SHORT).show();
+    }
+
+/*
+    public void onAdd(View view){
+            calculation();
+        Toast.makeText(this, "haha", Toast.LENGTH_SHORT).show();
+    }
+
+    public void onMinus(View view){
+        calculation();
     }
 
      */
 
-    //quantity need to change manually, able change and provide a receipt
+
+    //quantity need to change manually, able to control
+    //while manually quantity, checkBox will stop function
+    //provide a receipt
+    //@Override
+
 
     public void onBack(View view){
         Intent intent = new Intent(Cart.this, MainActivity.class);

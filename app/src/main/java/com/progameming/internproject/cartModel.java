@@ -68,4 +68,11 @@ public class cartModel extends ArrayList<cartModel> {
 
     public void setStock(String stock_qty){this.stock_qty = stock_qty;}
 
+    public boolean isSelected() {
+        return selected;
+    }
+
+    public void setSelected(boolean selected) {
+        this.selected = selected;
+    }
 }

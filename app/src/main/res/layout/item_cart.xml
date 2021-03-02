@@ -65,8 +65,42 @@
                     android:layout_width="wrap_content"
                     android:layout_height="0dp"
                     android:layout_weight="1"
-                    android:clickable="false"
+                    android:clickable="true"
                     android:focusable="false" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal"
+                    android:visibility="visible">
+
+                    <ImageButton
+                        android:id="@+id/button_minus"
+                        style="@style/MinusButtons"
+                        android:layout_width="@dimen/button_size"
+                        android:layout_height="@dimen/button_size"
+                        android:onClick="onMinus" />
+
+                    <TextView
+                        android:id="@+id/num"
+                        style="@style/ScoreText"
+                        android:layout_width="150dp"
+                        android:layout_height="50dp"
+                        android:layout_centerHorizontal="true"
+                        android:layout_centerVertical="true"
+                        android:text="1"
+                        android:textAlignment="center"
+                        android:textSize="40sp" />
+
+                    <ImageButton
+                        android:id="@+id/button_plus"
+                        style="@style/PlusButtons"
+                        android:layout_width="@dimen/button_size"
+                        android:layout_height="@dimen/button_size"
+                        android:contentDescription="@string/todo"
+                        android:onClick="onAdd" />
+
+                </LinearLayout>
 
             </LinearLayout>
 
