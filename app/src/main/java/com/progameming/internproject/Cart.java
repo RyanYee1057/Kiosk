@@ -20,17 +20,14 @@ public class Cart extends AppCompatActivity {
 
     TextView price;
     private TextView numQ;
-    ConstraintLayout bil;
     JSONArray cartArray;
     private ArrayList<cartModel> c ;
     //ArrayList<cartModel> c = new ArrayList<>();
     private CartListAdapter cAdapter;
 
     Spinner spinner;
-    String shoppingID;
     double totalPrice;
     String numStock;
-    int totalItem;
     int selectedNum = 1;
 
     @Override
@@ -100,7 +97,6 @@ public class Cart extends AppCompatActivity {
             price.setText(pp);
         }
 
-        // fix stock quantity
         numQ = findViewById(R.id.num);
 
         //spinner = (Spinner) findViewById(R.id.stockSpinner);
@@ -137,6 +133,11 @@ public class Cart extends AppCompatActivity {
     //quantity need to change manually, able change and provide a receipt
 
     public void onBack(View view){
+        Intent intent = new Intent(Cart.this, MainActivity.class);
+        startActivity(intent);
+    }
+
+    public void onNext(View view){
         Intent intent = new Intent(Cart.this, MainActivity.class);
         startActivity(intent);
     }

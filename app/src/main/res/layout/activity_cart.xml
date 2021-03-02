@@ -118,6 +118,7 @@
                     android:layout_height="50dp"
                     android:layout_gravity="end"
                     android:background="#FFEB3B"
+                    android:onClick="onNext"
                     android:text="@string/proceed_to_checkout"
                     android:textColor="@android:color/black"
                     android:textStyle="bold" />
