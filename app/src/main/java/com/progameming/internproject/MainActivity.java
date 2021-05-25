@@ -11,6 +11,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.EditText;
 import android.widget.GridView;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 
 import com.android.volley.Request;
@@ -36,14 +37,25 @@ public class MainActivity extends AppCompatActivity implements TextWatcher {
     final ArrayList<productModel> filterList = new ArrayList<>();
     EditText search;
     GridView gridView;
+    Boolean check = false;
+    LinearLayout sItem;
+    //Let filter become GONE when all product havent click
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        search = findViewById(R.id.filterGrid);
-        search.addTextChangedListener(this);
+        sItem = findViewById(R.id.searchItem);
+        sItem.setVisibility(View.GONE);
+
+        if(check = true) {
+            search = findViewById(R.id.filterGrid);
+            search.addTextChangedListener(this);
+            sItem.setVisibility(View.VISIBLE);
+        }else{
+            sItem.setVisibility(View.GONE);
+        }
 
         requestQueue = Volley.newRequestQueue(getApplicationContext());
         ProductManagement.getInstance().loadProduct(requestQueue);
@@ -197,6 +209,7 @@ public class MainActivity extends AppCompatActivity implements TextWatcher {
 
     public void onAll (View view){
         getAllProduct();
+        check = true;
     }
 
     public void onCart (View view){
@@ -209,7 +222,9 @@ public class MainActivity extends AppCompatActivity implements TextWatcher {
 
     @Override
     public void onTextChanged(CharSequence s, int i, int i1, int i2) {
-        this.productListAdapter.getFilter().filter(s);
+        if(check = true) {
+            this.productListAdapter.getFilter().filter(s);
+        }
     }
 
     @Override
