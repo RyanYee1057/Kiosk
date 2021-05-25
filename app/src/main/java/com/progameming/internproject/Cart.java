@@ -119,24 +119,9 @@ public class Cart extends AppCompatActivity {
         //Toast.makeText(this, "calculate: " + p, Toast.LENGTH_SHORT).show();
     }
 
-/*
-    public void onAdd(View view){
-            calculation();
-        Toast.makeText(this, "haha", Toast.LENGTH_SHORT).show();
-    }
-
-    public void onMinus(View view){
-        calculation();
-    }
-
-     */
-
-
     //quantity need to change manually, able to control
     //while manually quantity, checkBox will stop function
     //provide a receipt
-    //@Override
-
 
     public void onBack(View view){
         Intent intent = new Intent(Cart.this, MainActivity.class);
